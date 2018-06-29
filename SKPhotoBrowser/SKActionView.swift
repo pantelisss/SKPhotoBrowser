@@ -12,7 +12,9 @@ class SKActionView: UIView {
     internal weak var browser: SKPhotoBrowser?
     internal var closeButton: SKCloseButton!
     internal var deleteButton: SKDeleteButton!
-    
+    internal var gradientView: SKGradientView!
+
+
     // Action
     fileprivate var cancelTitle = "Cancel"
     
@@ -28,6 +30,7 @@ class SKActionView: UIView {
         self.init(frame: frame)
         self.browser = browser
 
+        configureGradient()
         configureCloseButton()
         configureDeleteButton()
     }
@@ -69,6 +72,9 @@ class SKActionView: UIView {
                         if SKPhotoBrowserOptions.displayDeleteButton {
                             self.deleteButton.alpha = alpha
                             self.deleteButton.frame = deleteFrame
+                        }
+                        if SKPhotoBrowserOptions.displayGradient {
+                            self.gradientView.alpha = alpha
                         }
         }, completion: nil)
     }
@@ -116,4 +122,11 @@ extension SKActionView {
         guard let image = image else { return }
         deleteButton.setImage(image, for: UIControlState())
     }
+
+    func configureGradient() {
+        gradientView = SKGradientView(frame: bounds)
+        gradientView.alpha = 0.0
+        addSubview(gradientView)
+    }
+
 }
