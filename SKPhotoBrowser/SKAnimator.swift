@@ -77,7 +77,7 @@ class SKAnimator: NSObject, SKPhotoBrowserAnimatorDelegate {
 
         presentAnimation(browser)
     }
-    
+
     func willDismiss(_ browser: SKPhotoBrowser) {
         guard let sender = browser.delegate?.viewForPhoto?(browser, index: browser.currentPageIndex),
             let image = browser.photoAtIndex(browser.currentPageIndex).underlyingImage,
@@ -172,7 +172,6 @@ private extension SKAnimator {
             initialSpringVelocity: 0,
             options: UIViewAnimationOptions(),
             animations: {
-                browser.showButtons()
                 self.backgroundView.alpha = 1.0
                 self.resizableImageView?.frame = finalFrame
             },
@@ -181,6 +180,7 @@ private extension SKAnimator {
                 browser.view.isHidden = false
                 self.backgroundView.isHidden = true
                 self.resizableImageView?.alpha = 0.0
+                browser.showButtons()
             })
     }
     

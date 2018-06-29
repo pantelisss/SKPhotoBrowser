@@ -20,6 +20,7 @@ class FromLocalViewController: UIViewController, UICollectionViewDataSource, UIC
         // Static setup
         SKPhotoBrowserOptions.displayAction = true
         SKPhotoBrowserOptions.displayStatusbar = true
+        SKPhotoBrowserOptions.displayGradient = true
         SKPhotoBrowserOptions.displayCounterLabel = true
         SKPhotoBrowserOptions.displayBackAndForwardButton = true
 

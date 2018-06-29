@@ -425,7 +425,7 @@ internal extension SKPhotoBrowser {
             setNeedsStatusBarAppearanceUpdate()
         }
         
-        translatedPoint = CGPoint(x: firstX, y: firstY + translatedPoint.y)
+        translatedPoint = CGPoint(x: firstX + translatedPoint.x, y: firstY + translatedPoint.y)
         zoomingScrollView.center = translatedPoint
         
         let minOffset: CGFloat = viewHalfHeight / 4
