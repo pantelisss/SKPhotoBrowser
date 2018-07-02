@@ -103,7 +103,10 @@ extension SKActionView {
             addSubview(closeButton)
         }
 
-        guard let size = size else { return }
+        guard let size = size else {
+            closeButton.setFrameSize(SKCloseButton.defaultSize)
+            return
+        }
         closeButton.setFrameSize(size)
         
         guard let image = image else { return }
@@ -120,7 +123,10 @@ extension SKActionView {
             addSubview(deleteButton)
         }
 
-        guard let size = size else { return }
+        guard let size = size else {
+            closeButton.setFrameSize(SKCloseButton.defaultSize)
+            return
+        }
         deleteButton.setFrameSize(size)
         
         guard let image = image else { return }
