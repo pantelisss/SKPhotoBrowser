@@ -143,8 +143,12 @@ class SKPaginationButton: UIButton {
                             .flexibleTopMargin]
         contentMode = .center
         
-        let image = UIImage(named: "SKPhotoBrowser.bundle/images/\(imageName)",
+        var image = UIImage(named: "SKPhotoBrowser.bundle/images/\(imageName)",
             in: bundle, compatibleWith: nil) ?? UIImage()
+        if let tintColor = SKPhotoBrowserOptions.backAndForwardButtonColor {
+            image = image.withRenderingMode(.alwaysTemplate)
+            self.tintColor = tintColor
+        }
         setImage(image, for: UIControlState())
     }
 }

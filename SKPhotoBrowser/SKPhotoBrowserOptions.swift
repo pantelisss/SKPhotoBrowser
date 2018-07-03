@@ -20,6 +20,7 @@ public struct SKPhotoBrowserOptions {
     
     public static var displayCounterLabel: Bool = true
     public static var displayBackAndForwardButton: Bool = true
+    public static var backAndForwardButtonColor: UIColor?
 
     public static var displayHorizontalScrollIndicator: Bool = true
     public static var displayVerticalScrollIndicator: Bool = true
