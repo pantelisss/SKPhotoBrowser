@@ -14,8 +14,8 @@ class SKPaginationView: UIView {
     var counterLabel: UILabel?
     var prevButton: UIButton?
     var nextButton: UIButton?
-    private var margin: CGFloat = 100
-
+    private let defaultHeight: CGFloat = 50.0
+    private var height: CGFloat { return defaultHeight + (SKMesurement.isPhoneX ? 40 : 0) }
     fileprivate weak var browser: SKPhotoBrowser?
     
     required init?(coder aDecoder: NSCoder) {
@@ -28,7 +28,7 @@ class SKPaginationView: UIView {
     
     convenience init(frame: CGRect, browser: SKPhotoBrowser?) {
         self.init(frame: frame)
-        self.frame = CGRect(x: 0, y: frame.height - margin, width: frame.width, height: 100)
+        self.frame = CGRect(x: 0, y: frame.height - height, width: frame.width, height: height)
         self.browser = browser
 
         setupApperance()
@@ -54,7 +54,7 @@ class SKPaginationView: UIView {
     }
     
     func updateFrame(frame: CGRect) {
-        self.frame = CGRect(x: 0, y: frame.height - margin, width: frame.width, height: 100)
+        self.frame = CGRect(x: 0, y: frame.height - height, width: frame.width, height: height)
     }
     
     func update(_ currentPageIndex: Int) {
@@ -88,8 +88,9 @@ private extension SKPaginationView {
     
     func setupCounterLabel() {
         guard SKPhotoBrowserOptions.displayCounterLabel else { return }
-        
-        let label = UILabel(frame: CGRect(x: 0, y: 20, width: 100, height: SKToolbarOptions.font.lineHeight))
+
+        let yVal = (defaultHeight - SKToolbarOptions.font.lineHeight) / 2.0
+        let label = UILabel(frame: CGRect(x: 0, y: yVal, width: 100, height: SKToolbarOptions.font.lineHeight))
         label.center.x = frame.width / 2
         label.textAlignment = .center
         label.backgroundColor = .clear
