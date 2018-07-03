@@ -14,7 +14,7 @@ private let bundle = Bundle(for: SKPhotoBrowser.self)
 public class SKButton: UIButton {
     static let defaultSize: CGSize = CGSize(width: 44.0, height: 44.0)
     internal let titleHPadding: CGFloat = 15.0
-    internal let titleVPadding: CGFloat = 8.0
+    internal let titleVPadding: CGFloat = 4.0
     internal var showFrame: CGRect!
     internal var hideFrame: CGRect!
     

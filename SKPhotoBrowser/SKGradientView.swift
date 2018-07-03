@@ -23,8 +23,9 @@ class SKGradientView: UIView {
     // MARK: Private
 
     private func setupGradient() {
-        let edgeColor = UIColor(white: 0.0, alpha: 0.15)
-        let colors: [UIColor] = [edgeColor, .clear, edgeColor]
+        let edgeColor = SKPhotoBrowserOptions.gradientColor ?? UIColor(white: 0.0, alpha: 0.15)
+        let middleColor = edgeColor.withAlphaComponent(0.0)
+        let colors: [UIColor] = [edgeColor, middleColor, edgeColor]
         let gradient: CAGradientLayer = CAGradientLayer()
         gradient.frame = self.bounds
         gradient.colors = colors.map { $0.cgColor }
