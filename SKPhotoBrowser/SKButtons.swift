@@ -13,7 +13,8 @@ private let bundle = Bundle(for: SKPhotoBrowser.self)
 
 public class SKButton: UIButton {
     static let defaultSize: CGSize = CGSize(width: 44.0, height: 44.0)
-    internal let titlePadding: CGFloat = 20.0
+    internal let titleHPadding: CGFloat = 15.0
+    internal let titleVPadding: CGFloat = 8.0
     internal var showFrame: CGRect!
     internal var hideFrame: CGRect!
     
@@ -46,6 +47,7 @@ public class SKCloseButton: SKButton {
     var imageName: String? = "btn_common_close_wh"
     override var marginX: CGFloat {
         get {
+            
             return SKPhotoBrowserOptions.swapCloseAndDeleteButtons
                 ? SKMesurement.screenWidth - SKButtonOptions.closeButtonPadding.x - bounds.size.width
                 : SKButtonOptions.closeButtonPadding.x
@@ -70,12 +72,14 @@ public class SKCloseButton: SKButton {
         hideFrame = CGRect(x: marginX, y: -marginY, width: bounds.size.width, height: bounds.size.height)
     }
     
-    public init(title: String) {
+    public init(title: String, font: UIFont? = nil) {
         super.init(frame: .zero)
         setTitle(title, for: UIControlState())
+        titleLabel?.font = font
         let defaultFont = UIFont.systemFont(ofSize: UIFont.systemFontSize)
         var size = NSString(string: title).size(withAttributes: [NSAttributedStringKey.font : titleLabel?.font ?? defaultFont])
-        size.width += 2.0 * titlePadding
+        size.width += 2.0 * titleHPadding
+        size.height += 2.0 * titleHPadding
         frame.size = size
         showFrame = CGRect(x: marginX, y: marginY, width: bounds.size.width, height: bounds.size.height)
         hideFrame = CGRect(x: marginX, y: -marginY, width: bounds.size.width, height: bounds.size.height)
