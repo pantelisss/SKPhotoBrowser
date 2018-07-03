@@ -61,7 +61,7 @@ public class SKCloseButton: SKButton {
         super.init(coder: aDecoder)
     }
     
-    override init(frame: CGRect) {
+    public override init(frame: CGRect) {
         super.init(frame: frame)
         if let imageName = imageName {
             setup(imageName)
