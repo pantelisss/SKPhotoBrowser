@@ -15,8 +15,7 @@ class SKPaginationView: UIView {
     var prevButton: UIButton?
     var nextButton: UIButton?
     private var margin: CGFloat = 100
-    private var extraMargin: CGFloat = SKMesurement.isPhoneX ? 40 : 0
-    
+
     fileprivate weak var browser: SKPhotoBrowser?
     
     required init?(coder aDecoder: NSCoder) {
@@ -29,7 +28,7 @@ class SKPaginationView: UIView {
     
     convenience init(frame: CGRect, browser: SKPhotoBrowser?) {
         self.init(frame: frame)
-        self.frame = CGRect(x: 0, y: frame.height - margin - extraMargin, width: frame.width, height: 100)
+        self.frame = CGRect(x: 0, y: frame.height - margin, width: frame.width, height: 100)
         self.browser = browser
 
         setupApperance()
@@ -55,7 +54,7 @@ class SKPaginationView: UIView {
     }
     
     func updateFrame(frame: CGRect) {
-        self.frame = CGRect(x: 0, y: frame.height - margin - extraMargin, width: frame.width, height: 100)
+        self.frame = CGRect(x: 0, y: frame.height - margin, width: frame.width, height: 100)
     }
     
     func update(_ currentPageIndex: Int) {
@@ -83,15 +82,15 @@ class SKPaginationView: UIView {
 
 private extension SKPaginationView {
     func setupApperance() {
-        backgroundColor = .clear
+        backgroundColor = SKToolbarOptions.bgColor
         clipsToBounds = true
     }
     
     func setupCounterLabel() {
         guard SKPhotoBrowserOptions.displayCounterLabel else { return }
         
-        let label = UILabel(frame: CGRect(x: 0, y: 0, width: 100, height: 50))
-        label.center = CGPoint(x: frame.width / 2, y: frame.height / 2)
+        let label = UILabel(frame: CGRect(x: 0, y: 20, width: 100, height: SKToolbarOptions.font.lineHeight))
+        label.center.x = frame.width / 2
         label.textAlignment = .center
         label.backgroundColor = .clear
         label.shadowColor = SKToolbarOptions.textShadowColor
@@ -112,7 +111,7 @@ private extension SKPaginationView {
         guard browser?.photos.count ?? 0 > 1 else { return }
         
         let button = SKPrevButton(frame: frame)
-        button.center = CGPoint(x: frame.width / 2 - 100, y: frame.height / 2)
+        button.center = CGPoint(x: frame.width / 2 - 100, y: counterLabel?.center.y ?? frame.height / 2)
         button.addTarget(browser, action: #selector(SKPhotoBrowser.gotoPreviousPage), for: .touchUpInside)
         addSubview(button)
         prevButton = button
@@ -123,7 +122,7 @@ private extension SKPaginationView {
         guard browser?.photos.count ?? 0 > 1 else { return }
         
         let button = SKNextButton(frame: frame)
-        button.center = CGPoint(x: frame.width / 2 + 100, y: frame.height / 2)
+        button.center = CGPoint(x: frame.width / 2 + 100, y: counterLabel?.center.y ?? frame.height / 2)
         button.addTarget(browser, action: #selector(SKPhotoBrowser.gotoNextPage), for: .touchUpInside)
         addSubview(button)
         nextButton = button
