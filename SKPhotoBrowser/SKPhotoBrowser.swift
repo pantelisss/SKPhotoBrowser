@@ -255,18 +255,6 @@ open class SKPhotoBrowser: UIViewController {
     }
 }
 
-// MARK: - Public Function For Customizing Buttons
-
-public extension SKPhotoBrowser {
-    func updateCloseButton(_ image: UIImage, size: CGSize? = nil) {
-        actionView.updateCloseButton(image: image, size: size)
-    }
-    
-    func updateDeleteButton(_ image: UIImage, size: CGSize? = nil) {
-        actionView.updateDeleteButton(image: image, size: size)
-    }
-}
-
 // MARK: - Public Function For Browser Control
 
 public extension SKPhotoBrowser {
