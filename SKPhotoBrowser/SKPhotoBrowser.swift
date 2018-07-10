@@ -438,7 +438,7 @@ internal extension SKPhotoBrowser {
 
                 let velocityY: CGFloat = CGFloat(0.35) * sender.velocity(in: self.view).y
                 let finalX: CGFloat = firstX
-                let finalY: CGFloat = viewHalfHeight
+                let finalY: CGFloat = firstY
                 
                 let animationDuration: Double = Double(abs(velocityY) * 0.0002 + 0.2)
                 
