@@ -204,6 +204,8 @@ class SKPagingScrollView: UIScrollView {
 private extension SKPagingScrollView {
     func frameForPageAtIndex(_ index: Int) -> CGRect {
         var pageFrame = bounds
+        pageFrame.size.height -= 2.0 * SKPhotoBrowserOptions.contentVerticalPadding
+        pageFrame.origin.y += SKPhotoBrowserOptions.contentVerticalPadding
         pageFrame.size.width -= (2 * sideMargin)
         pageFrame.origin.x = (bounds.size.width * CGFloat(index)) + sideMargin
         return pageFrame

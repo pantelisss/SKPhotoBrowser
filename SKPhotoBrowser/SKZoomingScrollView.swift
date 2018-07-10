@@ -75,6 +75,7 @@ open class SKZoomingScrollView: UIScrollView {
         showsVerticalScrollIndicator = SKPhotoBrowserOptions.displayVerticalScrollIndicator
         decelerationRate = UIScrollViewDecelerationRateFast
         autoresizingMask = [.flexibleWidth, .flexibleTopMargin, .flexibleBottomMargin, .flexibleRightMargin, .flexibleLeftMargin]
+        clipsToBounds = false
     }
     
     // MARK: - override

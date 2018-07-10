@@ -127,8 +127,10 @@ private extension SKAnimator {
     
     func calcFinalFrame(_ imageRatio: CGFloat) -> CGRect {
         guard !imageRatio.isNaN else { return .zero }
-        
-        if SKMesurement.screenRatio < imageRatio {
+
+        let containerHeight = SKMesurement.screenHeight - 2.0 * SKPhotoBrowserOptions.contentVerticalPadding
+        let containerRatio = SKMesurement.screenWidth / containerHeight
+        if containerRatio < imageRatio {
             let width = SKMesurement.screenWidth
             let height = width / imageRatio
             let yOffset = (SKMesurement.screenHeight - height) / 2
@@ -139,10 +141,10 @@ private extension SKAnimator {
             return CGRect(x: 0.0, y: 0, width: SKMesurement.screenWidth, height: height)
             
         } else {
-            let height = SKMesurement.screenHeight
+            let height = containerHeight
             let width = height * imageRatio
             let xOffset = (SKMesurement.screenWidth - width) / 2
-            return CGRect(x: xOffset, y: 0, width: width, height: height)
+            return CGRect(x: xOffset, y: SKPhotoBrowserOptions.contentVerticalPadding, width: width, height: height)
         }
     }
 }
