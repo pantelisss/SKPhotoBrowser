@@ -86,26 +86,13 @@ open class SKZoomingScrollView: UIScrollView {
         
         super.layoutSubviews()
         
-        let boundsSize = bounds.size
-        var frameToCenter = imageView.frame
-        
-        // horizon
-        if frameToCenter.size.width < boundsSize.width {
-            frameToCenter.origin.x = floor((boundsSize.width - frameToCenter.size.width) / 2)
-        } else {
-            frameToCenter.origin.x = 0
-        }
-        // vertical
-        if frameToCenter.size.height < boundsSize.height {
-            frameToCenter.origin.y = floor((boundsSize.height - frameToCenter.size.height) / 2)
-        } else {
-            frameToCenter.origin.y = 0
-        }
-        
-        // Center
-        if !imageView.frame.equalTo(frameToCenter) {
-            imageView.frame = frameToCenter
-        }
+        var offsetX = (bounds.size.width - contentSize.width) * CGFloat(0.5)
+        offsetX = max(0.0, offsetX)
+        var offsetY = (bounds.size.height - contentSize.height) * 0.5
+        offsetY = max(0.0, offsetY)
+
+        // adjust the center of image view
+        imageView.center = CGPoint(x: contentSize.width * 0.5 + offsetX, y: contentSize.height * 0.5 + offsetY)
     }
     
     open func setMaxMinZoomScalesForCurrentBounds() {
